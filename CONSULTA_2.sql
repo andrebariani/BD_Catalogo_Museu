@@ -13,12 +13,12 @@ SET max_parallel_workers_per_gather = 0;
 --Índice utilizado na consulta 2-- 
 CREATE INDEX IX_preco_ativ ON atividade(preco_ativ ASC);
 
-CREATE INDEX IX_cod_mus_cod_ativ ON atividade(cod_mus, cod_ativ);
 
-CREATE INDEX IX_cod_mus_preco_ativ ON atividade(cod_mus, preco_ativ ASC);
+--Lista todas as tableas deste BD--
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';
+--Lista os atributos de uma tabela do BD--
+select * from information_schema.columns where table_name = 'atividade';
 
-CLUSTER ATIVIDADE USING IX_preco_ativ;
-
-DROP INDEX IX_preco_ativ;
-
-DROP INDEX IX_cod_mus_preco_ativ;
+--mostra todos os índices criados
+SELECT tablename, indexname, indexdef
+FROM pg_indexes WHERE schemaname = 'public' ORDER BY tablename, indexname;

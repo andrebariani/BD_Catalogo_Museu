@@ -13,6 +13,11 @@ SELECT nome_mus AS Nome_do_museu, nome_col AS Nome_coleção, tipo_col AS Tipo_c
 FROM colecao as c LEFT OUTER JOIN museu as m ON (lower(tipo_col) LIKE 'b%')
 WHERE m.cod_mus = c.cod_mus;
 
+-- Consulta que está no Stored Procedure
+SELECT m.cod_mus AS Codigo_do_museu, nome_mus AS Nome_do_museu, nome_col AS Nome_coleção, tipo_col AS Tipo_coleção, horario_exib AS Horario_colecao
+FROM colecao as c LEFT OUTER JOIN museu as m ON (tipo_col LIKE $1)
+WHERE m.cod_mus = c.cod_mus;
+
 --Índice utilizado na consulta 1-- 
 CREATE INDEX IX_cod_mus_cod_col
 ON COLECAO(cod_mus, cod_col);
